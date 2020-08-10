@@ -10,9 +10,13 @@ export default class User extends Service {
     return result;
   }
 
-  public async listUser(): Promise<User[]> {
+  public async listUser(username: any): Promise<User[]> {
     const { ctx } = this;
-    const result = await ctx.model.User.find({});
+    let conditions = {};
+    if (username) {
+      conditions['username'] = { $regex: new RegExp(username, 'i') };
+    }
+    const result = await ctx.model.User.find(conditions);
     return result;
   }
 }

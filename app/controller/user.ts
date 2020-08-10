@@ -9,10 +9,10 @@ export default class UserController extends Controller {
     ctx.body = await ctx.service.user.register();
   }
 
-  @Get('/list')
-  public async listUser() {
+  @Get('')
+  public async listUser({ query: { username } }) {
     const { ctx } = this;
-    ctx.body = await ctx.service.user.listUser();
+    ctx.body = await ctx.service.user.listUser(username);
     return ctx.body;
   }
 }
