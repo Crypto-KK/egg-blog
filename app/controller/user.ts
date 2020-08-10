@@ -15,4 +15,11 @@ export default class UserController extends Controller {
     ctx.body = await ctx.service.user.listUser(username);
     return ctx.body;
   }
+
+  @Get('/:id')
+  public async userDetail({ params: { id } }) {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.userDetail(id);
+    return ctx.body;
+  }
 }

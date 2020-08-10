@@ -19,4 +19,11 @@ export default class User extends Service {
     const result = await ctx.model.User.find(conditions);
     return result;
   }
+
+  public async userDetail(id: String): Promise<User> {
+    const { ctx } = this;
+    const result = await ctx.model.User.find({ _id: id });
+    // @ts-ignore
+    return result;
+  }
 }
