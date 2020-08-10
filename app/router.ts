@@ -1,7 +1,6 @@
 import { Application } from 'egg';
+import { EggShell } from 'egg-shell-decorators/index';
 
 export default (app: Application) => {
-  const { controller, router } = app;
-
-  router.get('/', controller.user.add);
+  EggShell(app, { prefix: '/', quickStart: true });
 };
