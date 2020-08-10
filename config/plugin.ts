@@ -9,6 +9,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-mongoose',
   },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt'
+  }
 };
 
 export default plugin;

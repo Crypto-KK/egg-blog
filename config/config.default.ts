@@ -14,6 +14,15 @@ export default (appInfo: EggAppInfo) => {
     url: 'mongodb://10.211.55.6:27017/egg-blog',
     options: { useNewUrlParser: true },
   };
+  config.jwt = {
+    secret: '3x900n1x74m'
+  };
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true,
+    },
+  }
   // add your egg config in here
   config.middleware = [];
 

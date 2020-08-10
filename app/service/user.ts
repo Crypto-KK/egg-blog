@@ -26,4 +26,19 @@ export default class User extends Service {
     // @ts-ignore
     return result;
   }
+
+  public async login(username, password) {
+    const { ctx, app } = this;
+    const userCount = await ctx.model.User.find({
+      username,
+      password
+    }).count();
+    let token = '';
+    if (userCount > 0) {
+      token = app.jwt.sign({
+        username: username
+      }, app.config.jwt.secret);
+    }
+    return token;
+  }
 }
