@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import { jsonResponse, successResponse } from './rest'
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -17,6 +18,8 @@ export default (appInfo: EggAppInfo) => {
   config.jwt = {
     secret: '3x900n1x74m'
   };
+  config.jsonResponse = jsonResponse;
+  config.successResponse = successResponse;
   config.security = {
     csrf: {
       enable: false,

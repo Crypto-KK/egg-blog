@@ -14,16 +14,16 @@ export default class UserController extends Controller {
   @IgnoreJwt
   @Get('')
   public async listUser({ query: { username } }) {
-    const { ctx } = this;
-    ctx.body = await ctx.service.user.listUser(username);
-    return ctx.body;
+    const { ctx, app } = this;
+    const result = await ctx.service.user.listUser(username);
+    return app.config.successResponse(result);
   }
 
   @Get('/:username')
   public async userDetail({ params: { username } }) {
-    const { ctx } = this;
-    ctx.body = await ctx.service.user.userDetail(username);
-    return ctx.body;
+    const { ctx, app } = this;
+    const result = await ctx.service.user.userDetail(username);
+    return app.config.successResponse(result);
   }
 
   @IgnoreJwt

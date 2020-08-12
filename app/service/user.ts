@@ -44,20 +44,26 @@ export default class User extends Service {
 
   public async login(username, password) {
     const { ctx, app } = this;
-    const userCount = await ctx.model.User.find({
-      username,
-      password
-    }).count();
-    let token = '';
-    if (userCount > 0) {
-      token = app.jwt.sign({
+    const user = await ctx.model.User.findOne({ username })
+    if (!user) {
+      return {
+        msg: '用户名错误'
+      }
+    }
+    const encryptedPassword = ctx.helper.encryptPassword(password, user.salt)
+    if (user.password === encryptedPassword) {
+      let token = app.jwt.sign({
         username: username
       }, app.config.jwt.secret);
       // 设置last_login
       const now = new Date();
       await ctx.model.User.update({ username },
         { $set: { last_login: now } })
+      return token;
+    } else {
+      return {
+        msg: '用户名或密码错误'
+      }
     }
-    return token;
   }
 }
