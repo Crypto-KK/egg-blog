@@ -12,10 +12,6 @@ module.exports = app => {
       required: true,
     },
     name: { type: String },
-    role: {
-      type: Number,
-      default: 0
-    },
     salt: {
       type: String
     },
