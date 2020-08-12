@@ -3,11 +3,13 @@
 
 import 'egg';
 import ExportResource from '../../../app/controller/resource';
+import ExportRole from '../../../app/controller/role';
 import ExportUser from '../../../app/controller/user';
 
 declare module 'egg' {
   interface IController {
     resource: ExportResource;
+    role: ExportRole;
     user: ExportUser;
   }
 }
