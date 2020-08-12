@@ -4,10 +4,19 @@ export default class User extends Service {
   public async register(reqBody) {
     const { ctx } = this;
     const { username, password, name } = reqBody
+    const userCount = await this.ctx.model.User.find({ username }).count()
+    if (userCount > 0) {
+      return {
+        msg: '用户名已存在'
+      }
+    }
+    const salt = ctx.helper.makeSalt();
+    const encryptedPassword = ctx.helper.encryptPassword(password, salt)
     return await ctx.model.User.create({
       username,
-      password,
-      name
+      password: encryptedPassword,
+      name,
+      salt
     });
   }
 

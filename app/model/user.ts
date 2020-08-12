@@ -16,6 +16,9 @@ module.exports = app => {
       type: Number,
       default: 0
     },
+    salt: {
+      type: String
+    },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
     last_login: { type: Date }
