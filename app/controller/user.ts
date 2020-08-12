@@ -19,9 +19,9 @@ export default class UserController extends Controller {
   }
 
   @Get('/:username')
-  public async userDetail({ params: { username } }) {
+  public async userDetail() {
     const { ctx, app } = this;
-    const result = await ctx.service.user.userDetail(username);
+    const result = await ctx.service.user.userDetail(ctx.params.username);
     return app.config.successResponse(result);
   }
 
