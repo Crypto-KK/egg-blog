@@ -1,14 +1,17 @@
 import { Controller } from 'egg';
-import {Get, Post, Prefix} from 'egg-shell-decorators/index';
+import {Get, IgnoreJwt, Post, Prefix} from 'egg-shell-decorators/index';
 
 @Prefix('/user')
 export default class UserController extends Controller {
-  @Get('/register')
+  @IgnoreJwt
+  @Post('/register')
   public async register() {
     const { ctx } = this;
-    ctx.body = await ctx.service.user.register();
+    const reqBody = ctx.request.body;
+    ctx.body = await ctx.service.user.register(reqBody);
   }
 
+  @IgnoreJwt
   @Get('')
   public async listUser({ query: { username } }) {
     const { ctx } = this;
@@ -16,13 +19,14 @@ export default class UserController extends Controller {
     return ctx.body;
   }
 
-  @Get('/:id')
-  public async userDetail({ params: { id } }) {
+  @Get('/:username')
+  public async userDetail({ params: { username } }) {
     const { ctx } = this;
-    ctx.body = await ctx.service.user.userDetail(id);
+    ctx.body = await ctx.service.user.userDetail(username);
     return ctx.body;
   }
 
+  @IgnoreJwt
   @Post('/login')
   public async login() {
     const { ctx } = this;

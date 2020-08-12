@@ -12,7 +12,11 @@ const plugin: EggPlugin = {
   jwt: {
     enable: true,
     package: 'egg-jwt'
-  }
+  },
+  // swaggerdoc: {
+  //   enable: true,
+  //   package: 'egg-swagger-doc'
+  // }
 };
 
 export default plugin;
