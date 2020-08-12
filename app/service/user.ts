@@ -66,4 +66,30 @@ export default class User extends Service {
       }
     }
   }
+
+  public async getResources(username) {
+    // 获取资源列表
+    const { ctx } = this;
+    const user = await ctx.model.User.findOne({ username })
+    if (user) {
+      const user_id = user._id
+      const user_role = await ctx.model.UserRole.findOne({ user_id: user_id.toString() });
+      const role_resource = await ctx.model.RoleResource.find({ role_id: user_role.role_id.toString() });
+      const resource_ids = [];
+      for (let i = 0; i < role_resource.length; i++) {
+        // @ts-ignore
+        resource_ids.push(role_resource[i].resource_id.toString())
+      }
+      const $project = {
+        api: 1,
+        desc: 1
+      }
+      return await ctx.model.Resource.find({ _id: { $in: resource_ids } }, $project)
+    } else {
+      return {
+        msg: '不存在该用户'
+      }
+    }
+
+  }
 }

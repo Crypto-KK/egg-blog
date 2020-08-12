@@ -3,11 +3,11 @@ module.exports = app => {
 
   const UserRoleSchema = new mongoose.Schema({
     user_id: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       required: true
     },
     role_id: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       required: true
     },
     created_at: { type: Date, default: Date.now },

@@ -11,7 +11,6 @@ export default class UserController extends Controller {
     ctx.body = await ctx.service.user.register(reqBody);
   }
 
-  @IgnoreJwt
   @Get('')
   public async listUser({ query: { username } }) {
     const { ctx, app } = this;
@@ -37,5 +36,13 @@ export default class UserController extends Controller {
     );
     ctx.body = token;
     return token
+  }
+
+  @Get('/permissions/:username')
+  public async getResources({ params: { username } }) {
+    // 获取能够访问的资源列表
+    const { ctx, app } = this;
+    const result = await ctx.service.user.getResources(username);
+    return app.config.successResponse(result);
   }
 }
