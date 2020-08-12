@@ -1,5 +1,5 @@
-import {Get, Post, Prefix} from "egg-shell-decorators/index";
-import {Controller} from "egg";
+import { Get, Post, Prefix } from 'egg-shell-decorators/index';
+import { Controller } from 'egg';
 
 @Prefix('/resource')
 export default class ResourceController extends Controller {

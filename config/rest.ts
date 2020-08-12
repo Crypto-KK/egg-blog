@@ -7,7 +7,7 @@ export const jsonResponse = (code, msg = null, res = null) => {
   };
 };
 
-export const successResponse = (data) => {
+export const successResponse = data => {
   // @ts-ignore
-  return jsonResponse(200, 'suc', data)
-}
+  return jsonResponse(200, 'suc', data);
+};

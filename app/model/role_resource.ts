@@ -4,11 +4,11 @@ module.exports = app => {
   const RoleResourceSchema = new mongoose.Schema({
     role_id: {
       type: String,
-      required: true
+      required: true,
     },
     resource_id: {
       type: String,
-      required: true
+      required: true,
     },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },

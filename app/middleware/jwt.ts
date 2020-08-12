@@ -7,20 +7,20 @@ module.exports = options => {
         // 解码
         decode = ctx.app.jwt.verify(token, options.secret);
         await next();
-        console.log(decode)
+        console.log(decode);
       } catch (error) {
         ctx.status = 401;
         ctx.body = {
-          msg: error.message
-        }
-        return
+          msg: error.message,
+        };
+        return;
       }
     } else {
       ctx.status = 401;
       ctx.body = {
-        msg: 'token not found'
-      }
-      return
+        msg: 'token not found',
+      };
+      return;
     }
-  }
-}
+  };
+};

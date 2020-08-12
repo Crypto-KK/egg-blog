@@ -7,7 +7,7 @@ module.exports = app => {
       required: true,
     },
     desc: {
-      type: String
+      type: String,
     },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },

@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import {Get, IgnoreJwt, Post, Prefix} from 'egg-shell-decorators/index';
+import { Get, IgnoreJwt, Post, Prefix } from 'egg-shell-decorators/index';
 
 @Prefix('/user')
 export default class UserController extends Controller {
@@ -32,10 +32,10 @@ export default class UserController extends Controller {
     const data = ctx.request.body;
     const token = await ctx.service.user.login(
       data.username,
-      data.password
+      data.password,
     );
     ctx.body = token;
-    return token
+    return token;
   }
 
   @Get('/permissions/:username')

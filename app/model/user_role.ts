@@ -4,11 +4,11 @@ module.exports = app => {
   const UserRoleSchema = new mongoose.Schema({
     user_id: {
       type: String,
-      required: true
+      required: true,
     },
     role_id: {
       type: String,
-      required: true
+      required: true,
     },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
