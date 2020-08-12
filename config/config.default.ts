@@ -59,6 +59,14 @@ export default (appInfo: EggAppInfo) => {
   // }
   config.middleware = [];
 
+  // 日志配置
+  config.logger = {
+    encoding: 'utf-8',
+    appLogName: `${appInfo.name}-web.log`,
+    coreLogName: 'egg-web.log',
+    agentLogName: 'egg-agent.log',
+    errorLogName: 'common-error.log',
+  };
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
